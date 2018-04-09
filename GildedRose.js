@@ -11,7 +11,11 @@ class GildedRose {
             if (this.quality > 0) {
                 if (this.name !== 'Sulfuras, Hand of Ragnaros') {
                     this.quality -= 1;
+                } else {
+                    console.log();
                 }
+            } else {
+                console.log();
             }
         } else {
             if (this.quality < 50) {
@@ -20,18 +24,32 @@ class GildedRose {
                     if (this.daysRemaining < 11) {
                         if (this.quality < 50) {
                             this.quality += 1;
+                        } else {
+                            console.log();
                         }
+                    } else {
+                        console.log();
                     }
                     if (this.daysRemaining < 6) {
                         if (this.quality < 50) {
                             this.quality += 1;
+                        } else {
+                            console.log();
                         }
+                    } else {
+                        console.log();
                     }
+                } else {
+                    console.log();
                 }
+            } else {
+                console.log();
             }
         }
         if (this.name !== 'Sulfuras, Hand of Ragnaros') {
             this.daysRemaining -= 1;
+        } else {
+            console.log();
         }
         if (this.daysRemaining < 0) {
             if (this.name !== 'Aged Brie') {
@@ -39,7 +57,11 @@ class GildedRose {
                     if (this.quality > 0) {
                         if (this.name !== 'Sulfuras, Hand of Ragnaros') {
                             this.quality -= 1;
+                        } else {
+                            console.log();
                         }
+                    } else {
+                        console.log();
                     }
                 } else {
                     this.quality = this.quality - this.quality;
@@ -47,8 +69,12 @@ class GildedRose {
             } else {
                 if (this.quality < 50) {
                     this.quality += 1;
+                } else {
+                    console.log();
                 }
             }
+        } else {
+            console.log();
         }
     }
 }
