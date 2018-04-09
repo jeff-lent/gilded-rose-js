@@ -1,8 +1,11 @@
 class Normal {
-    constructor(name, quality, daysRemaining) {
-        this.name = name;
+    constructor(quality, daysRemaining) {
         this.quality = quality;
         this.daysRemaining = daysRemaining;
+    }
+
+    static get name() {
+        return 'normal';
     }
 
     tick() {

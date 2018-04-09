@@ -1,8 +1,12 @@
 const Normal = require('./Normal');
 
 class Passes extends Normal {
-    constructor(name, quality, daysRemaining) {
-        super(name, quality, daysRemaining);
+    constructor(quality, daysRemaining) {
+        super(quality, daysRemaining);
+    }
+
+    static get name() {
+        return 'Backstage passes to a TAFKAL80ETC concert';
     }
 
     tick() {

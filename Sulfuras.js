@@ -1,8 +1,12 @@
 const Normal = require('./Normal');
 
 class Sulfuras extends Normal {
-    constructor(name, quality, daysRemaining) {
-        super(name, quality, daysRemaining);
+    constructor(quality, daysRemaining) {
+        super(quality, daysRemaining);
+    }
+
+    static get name() {
+        return 'Sulfuras, Hand of Ragnaros';
     }
 
     tick() {

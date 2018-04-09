@@ -6,52 +6,32 @@ const Passes = require('./Passes');
 class GildedRose {
 
     constructor(name, quality, daysRemaining) {
-        this._name = name;
-        this._quality = quality;
-        this._daysRemaining = daysRemaining;
+        this.item = this.classFor(name, quality, daysRemaining);
     }
 
-    get name() {
-        if(this.item) return this.item.name;
-        return this._name;
-    }
-
-    get quality() {
-        if(this.item) return this.item.quality;
-        return this._quality;
-    }
-
-    get daysRemaining() {
-        if(this.item) return this.item.daysRemaining;
-        return this._daysRemaining;
-    }
-
-    normalTick() {
-        this.item = new Normal(this._name, this._quality, this._daysRemaining);
-        this.item.tick();
-    }
-
-    brieTick() {
-        this.item = new Brie(this._name, this._quality, this._daysRemaining);
-        this.item.tick();
-    }
-
-    passTick() {
-        this.item = new Passes(this._name, this._quality, this._daysRemaining);
-        this.item.tick();
-    }
-
-    sulfurasTick() {
-        this.item = new Sulfuras(this._name, this._quality, this._daysRemaining);
-        this.item.tick();
+    classFor(name, quality, daysRemaining) {
+        if (name === Normal.name) return new Normal(quality, daysRemaining);
+        if (name === Brie.name) return new Brie(quality, daysRemaining);
+        if (name === Passes.name) return new Passes(quality, daysRemaining);
+        if (name === Sulfuras.name) return new Sulfuras(quality, daysRemaining);
     }
 
     tick() {
-        if (this._name === 'normal') return this.normalTick();
-        if (this._name === 'Aged Brie') return this.brieTick();
-        if (this._name === 'Backstage passes to a TAFKAL80ETC concert') return this.passTick();
-        if (this._name === 'Sulfuras, Hand of Ragnaros') return this.sulfurasTick();
+        this.item.tick();
     }
+
+    get name() {
+        return this.item.name;
+    }
+
+    get quality() {
+        return this.item.quality;
+    }
+
+    get daysRemaining() {
+        return this.item.daysRemaining;
+    }
+
 }
 
 module.exports = GildedRose;
