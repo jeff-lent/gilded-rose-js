@@ -6,6 +6,13 @@ class GildedRose {
         this.daysRemaining = daysRemaining;
     }
 
+    normalTick() {
+        this.daysRemaining--;
+        if(this.quality === 0) return;
+        this.quality--;
+        if(this.daysRemaining < 0) this.quality--;
+    }
+
     tick() {
         if(this.name === 'normal') return this.normalTick();
 
