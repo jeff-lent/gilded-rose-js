@@ -1,6 +1,6 @@
-const Normal = require('./Normal');
+const Item = require('./Item');
 
-class Brie extends Normal {
+class Brie extends Item {
     constructor(quality, daysRemaining) {
         super(quality, daysRemaining);
     }

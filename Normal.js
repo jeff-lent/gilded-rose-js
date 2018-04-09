@@ -1,7 +1,8 @@
-class Normal {
+const Item = require('./Item');
+
+class Normal extends Item {
     constructor(quality, daysRemaining) {
-        this.quality = quality;
-        this.daysRemaining = daysRemaining;
+        super(quality, daysRemaining);
     }
 
     static get name() {
