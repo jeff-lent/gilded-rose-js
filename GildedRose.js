@@ -1,6 +1,7 @@
 const Normal = require('./Normal');
 const Brie = require('./Brie');
 const Sulfuras = require('./Sulfuras');
+const Passes = require('./Passes');
 
 class GildedRose {
 
@@ -36,9 +37,8 @@ class GildedRose {
     }
 
     passTick() {
-        this._daysRemaining--;
-        this._quality = Math.min(50, this._quality + 3);
-        if (this._daysRemaining < 0) this._quality = 0;
+        this.item = new Passes(this._name, this._quality, this._daysRemaining);
+        this.item.tick();
     }
 
     sulfurasTick() {
