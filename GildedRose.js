@@ -20,9 +20,16 @@ class GildedRose {
         if(this.daysRemaining < 0) this.quality++;
     }
 
+    passTick() {
+        this.daysRemaining--;
+        this.quality = Math.min(50, this.quality + 3);
+        if(this.daysRemaining < 0) this.quality = 0;
+    }
+
     tick() {
         if(this.name === 'normal') return this.normalTick();
         if(this.name === 'Aged Brie') return this.brieTick();
+        if(this.name === 'Backstage passes to a TAFKAL80ETC concert') return this.passTick();
 
         if (this.name !== 'Aged Brie' && this.name !== 'Backstage passes to a TAFKAL80ETC concert') {
             if (this.quality > 0) {
