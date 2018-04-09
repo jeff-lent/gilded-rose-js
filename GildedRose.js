@@ -1,5 +1,6 @@
 const Normal = require('./Normal');
 const Brie = require('./Brie');
+const Sulfuras = require('./Sulfuras');
 
 class GildedRose {
 
@@ -41,7 +42,8 @@ class GildedRose {
     }
 
     sulfurasTick() {
-
+        this.item = new Sulfuras(this._name, this._quality, this._daysRemaining);
+        this.item.tick();
     }
 
     tick() {
