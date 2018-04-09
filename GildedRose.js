@@ -3,6 +3,8 @@ const Brie = require('./Brie');
 const Sulfuras = require('./Sulfuras');
 const Passes = require('./Passes');
 
+const itemTypes = [Normal, Brie, Sulfuras, Passes];
+
 class GildedRose {
 
     constructor(name, quality, daysRemaining) {
@@ -10,10 +12,8 @@ class GildedRose {
     }
 
     classFor(name, quality, daysRemaining) {
-        if (name === Normal.name) return new Normal(quality, daysRemaining);
-        if (name === Brie.name) return new Brie(quality, daysRemaining);
-        if (name === Passes.name) return new Passes(quality, daysRemaining);
-        if (name === Sulfuras.name) return new Sulfuras(quality, daysRemaining);
+        const Item = itemTypes.find(i => i.name === name);
+        return new Item(quality, daysRemaining);
     }
 
     tick() {
