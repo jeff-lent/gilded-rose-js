@@ -13,8 +13,16 @@ class GildedRose {
         if(this.daysRemaining < 0) this.quality--;
     }
 
+    brieTick() {
+        this.daysRemaining--;
+        if(this.quality >= 50) return;
+        this.quality++;
+        if(this.daysRemaining < 0) this.quality++;
+    }
+
     tick() {
         if(this.name === 'normal') return this.normalTick();
+        if(this.name === 'Aged Brie') return this.brieTick();
 
         if (this.name !== 'Aged Brie' && this.name !== 'Backstage passes to a TAFKAL80ETC concert') {
             if (this.quality > 0) {
