@@ -1,4 +1,5 @@
 const Normal = require('./Normal');
+const Brie = require('./Brie');
 
 class GildedRose {
 
@@ -29,10 +30,8 @@ class GildedRose {
     }
 
     brieTick() {
-        this._daysRemaining--;
-        if (this._quality >= 50) return;
-        this._quality++;
-        if (this._daysRemaining < 0) this._quality++;
+        this.item = new Brie(this._name, this._quality, this._daysRemaining);
+        this.item.tick();
     }
 
     passTick() {
