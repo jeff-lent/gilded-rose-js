@@ -57,7 +57,7 @@ describe('Sulfuras, Hand of Ragnaros', () => {
 })
 
 describe('Aged Brie', () => {
-    it('something', () => {
+    it('Quality goes up', () => {
         const item = new GildedRose('Aged Brie', 10, 5);
         item.tick();
 
@@ -65,7 +65,7 @@ describe('Aged Brie', () => {
         expect(item.daysRemaining).to.equal(4);
     })
 
-    it('somethingxxx', () => {
+    it('Is never better than 50', () => {
         const item = new GildedRose('Aged Brie', 50, 5);
         item.tick();
 
@@ -81,7 +81,7 @@ describe('Aged Brie', () => {
         expect(item.daysRemaining).to.equal(-2);
     })
 
-    it('lijelwe', () => {
+    it('gets better faster', () => {
         const item = new GildedRose('Aged Brie', 40, -1);
         item.tick();
 
@@ -91,7 +91,7 @@ describe('Aged Brie', () => {
 })
 
 describe('Backstage passes to a TAFKAL80ETC concert', () => {
-    it('something', () => {
+    it('get better fast', () => {
         const item = new GildedRose('Backstage passes to a TAFKAL80ETC concert', 10, 5);
         item.tick();
 
@@ -99,7 +99,7 @@ describe('Backstage passes to a TAFKAL80ETC concert', () => {
         expect(item.daysRemaining).to.equal(4);
     })
 
-    it('sosssmething', () => {
+    it('Never better than 50', () => {
         const item = new GildedRose('Backstage passes to a TAFKAL80ETC concert', 49, 5);
         item.tick();
 
@@ -107,7 +107,7 @@ describe('Backstage passes to a TAFKAL80ETC concert', () => {
         expect(item.daysRemaining).to.equal(4);
     })
 
-    it('sosssmethingvvv', () => {
+    it('maxes out at 50', () => {
         const item = new GildedRose('Backstage passes to a TAFKAL80ETC concert', 49, 12);
         item.tick();
 
@@ -115,11 +115,11 @@ describe('Backstage passes to a TAFKAL80ETC concert', () => {
         expect(item.daysRemaining).to.equal(11);
     })
 
-    it('dmnsm', () => {
+    it('useless after show', () => {
         const item = new GildedRose('Backstage passes to a TAFKAL80ETC concert', 49, -1);
         item.tick();
 
         expect(item.quality).to.equal(0);
-        expect(item.daysRemaining).to.equal(11);
+        expect(item.daysRemaining).to.equal(-2);
     })
 })
