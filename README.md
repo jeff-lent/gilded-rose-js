@@ -23,15 +23,6 @@ The Gilded Rose is a famous kata (or exercise) in OO, testing, and refactoring l
 
 At 10:28 in the video, Ms. Metz talks about how to create "a seam". Follow this procedure to avoid having to understand the deeply nested conditionals.
 
-### Run with Coverage
-
-Use IntelliJ's run with coverage feature:
-
-![coverage](./img/coverage.png)
-
-Observe the red lines of code and turn them green!
-
-
 ### Additional information
 
 [Original Descripton of Gilded Rose](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/)
