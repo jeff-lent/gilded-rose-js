@@ -1,56 +1,36 @@
+import {Normal} from './Normal';
+import {Brie} from './Brie';
+import {Sulfuras} from './Sulfuras';
+import {Passes} from './Passes';
+import {Item} from './Item';
+
+const itemTypes = [Normal, Brie, Sulfuras, Passes];
+
 export class GildedRose {
-    name: string;
-    quality: number;
-    daysRemaining: number;
-    constructor(name:string, quality, daysRemaining) {
-        this.name = name;
-        this.quality = quality;
-        this.daysRemaining = daysRemaining;
+    item: Item;
+    constructor(name:string, quality:number, daysRemaining:number) {
+        this.item = this.classFor(name, quality, daysRemaining);
     }
 
-    tick() {
-        if (this.name !== 'Aged Brie' && this.name !== 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.quality > 0) {
-                if (this.name !== 'Sulfuras, Hand of Ragnaros') {
-                    this.quality -= 1;
-                }
-            }
-        } else {
-            if (this.quality < 50) {
-                this.quality += 1;
-                if (this.name === 'Backstage passes to a TAFKAL80ETC concert') {
-                    if (this.daysRemaining < 11) {
-                        if (this.quality < 50) {
-                            this.quality += 1;
-                        }
-                    }
-                    if (this.daysRemaining < 6) {
-                        if (this.quality < 50) {
-                            this.quality += 1;
-                        }
-                    }
-                }
-            }
-        }
-        if (this.name !== 'Sulfuras, Hand of Ragnaros') {
-            this.daysRemaining -= 1;
-        }
-        if (this.daysRemaining < 0) {
-            if (this.name !== 'Aged Brie') {
-                if (this.name !== 'Backstage passes to a TAFKAL80ETC concert') {
-                    if (this.quality > 0) {
-                        if (this.name !== 'Sulfuras, Hand of Ragnaros') {
-                            this.quality -= 1;
-                        }
-                    }
-                } else {
-                    this.quality = this.quality - this.quality;
-                }
-            } else {
-                if (this.quality < 50) {
-                    this.quality += 1;
-                }
-            }
-        }
+    classFor(name:string, quality:number, daysRemaining:number):Item {
+        const Item = itemTypes.filter(i => i.itemName === name)[0];
+        return new Item(quality, daysRemaining);
     }
+
+    tick():void {
+        this.item.tick();
+    }
+
+    get name():string {
+        return typeof this.item;
+    }
+
+    get quality():number {
+        return this.item.quality;
+    }
+
+    get daysRemaining():number {
+        return this.item.daysRemaining;
+    }
+
 }
