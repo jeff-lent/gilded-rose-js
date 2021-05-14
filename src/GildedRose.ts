@@ -1,6 +1,8 @@
-class GildedRose {
-
-    constructor(name, quality, daysRemaining) {
+export class GildedRose {
+    name: string;
+    quality: number;
+    daysRemaining: number;
+    constructor(name:string, quality, daysRemaining) {
         this.name = name;
         this.quality = quality;
         this.daysRemaining = daysRemaining;
@@ -52,5 +54,3 @@ class GildedRose {
         }
     }
 }
-
-module.exports = GildedRose;

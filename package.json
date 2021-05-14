@@ -11,7 +11,11 @@
     "nyc": "^11.6.0"
   },
   "scripts": {
-    "test": "mocha",
-    "coverage": "nyc mocha"
+    "watch-compile": "npx tsc --outdir dist --watch",
+    "compile": "npx tsc --outdir dist",
+    "test": "npm run compile && mocha"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.4"
   }
 }

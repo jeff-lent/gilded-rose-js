@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 
-const GildedRose = require('../GildedRose.js');
+const {GildedRose} = require('../dist/GildedRose.js');
 
 describe('NormalItem', function () {
 
