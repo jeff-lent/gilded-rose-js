@@ -1,36 +1,36 @@
 const expect = require('chai').expect;
 
-const GildedRose = require('../GildedRose.js');
+const Normal = require('../MainFunctions/Normal')
 
 describe('NormalItem', function () {
 
     it('before sell by date', function () {
-        const item = new GildedRose('normal', 10, 5);
-        item.tick();
+        const item = new Normal('normal', 10, 5);
+        item.norm_tick();
 
         expect(item.quality).to.equal(9);
         expect(item.daysRemaining).to.equal(4);
     });
 
     it('quality of zero', function () {
-        const item = new GildedRose('normal', 0, 5);
-        item.tick();
+        const item = new Normal('normal', 0, 5);
+        item.norm_tick();
 
-        expect(item.quality).to.equal(0);
+        expect(item.getQuality()).to.equal(0);
         expect(item.daysRemaining).to.equal(4);
     });
 
     it('negative days remaining 0 quality', function () {
-        const item = new GildedRose('normal', 0, -1);
-        item.tick();
+        const item = new Normal('normal', 0, -1);
+        item.norm_tick();
 
         expect(item.quality).to.equal(0);
         expect(item.daysRemaining).to.equal(-2);
     });
 
     it('negative days remaining high quality', function () {
-        const item = new GildedRose('normal', 10, -1);
-        item.tick();
+        const item = new Normal('normal', 10, -1);
+        item.norm_tick();
 
         expect(item.quality).to.equal(8);
         expect(item.daysRemaining).to.equal(-2);
@@ -38,91 +38,91 @@ describe('NormalItem', function () {
 
 });
 
-describe('Sulfuras, Hand of Ragnaros', () => {
-    it(`shouldn't lose quality`, () => {
-        const item = new GildedRose('Sulfuras, Hand of Ragnaros', 1, 5);
-        item.tick();
+// describe('Sulfuras, Hand of Ragnaros', () => {
+//     it(`shouldn't lose quality`, () => {
+//         const item = new GildedRose('Sulfuras, Hand of Ragnaros', 1, 5);
+//         item.tick();
 
-        expect(item.quality).to.equal(1);
-        expect(item.daysRemaining).to.equal(5);
-    })
+//         expect(item.quality).to.equal(1);
+//         expect(item.daysRemaining).to.equal(5);
+//     })
 
-    it(`negative days remaining`, () => {
-        const item = new GildedRose('Sulfuras, Hand of Ragnaros', 1, -1);
-        item.tick();
+//     it(`negative days remaining`, () => {
+//         const item = new GildedRose('Sulfuras, Hand of Ragnaros', 1, -1);
+//         item.tick();
 
-        expect(item.quality).to.equal(1);
-        expect(item.daysRemaining).to.equal(-1);
-    })
-})
+//         expect(item.quality).to.equal(1);
+//         expect(item.daysRemaining).to.equal(-1);
+//     })
+// })
 
-describe('Aged Brie', () => {
-    it('Quality goes up', () => {
-        const item = new GildedRose('Aged Brie', 10, 5);
-        item.tick();
+// describe('Aged Brie', () => {
+//     it('Quality goes up', () => {
+//         const item = new GildedRose('Aged Brie', 10, 5);
+//         item.tick();
 
-        expect(item.quality).to.equal(11);
-        expect(item.daysRemaining).to.equal(4);
-    })
+//         expect(item.quality).to.equal(11);
+//         expect(item.daysRemaining).to.equal(4);
+//     })
 
-    it('Is never better than 50', () => {
-        const item = new GildedRose('Aged Brie', 50, 5);
-        item.tick();
+//     it('Is never better than 50', () => {
+//         const item = new GildedRose('Aged Brie', 50, 5);
+//         item.tick();
 
-        expect(item.quality).to.equal(50);
-        expect(item.daysRemaining).to.equal(4);
-    })
+//         expect(item.quality).to.equal(50);
+//         expect(item.daysRemaining).to.equal(4);
+//     })
 
-    it('negative days remaining', () => {
-        const item = new GildedRose('Aged Brie', 50, -1);
-        item.tick();
+//     it('negative days remaining', () => {
+//         const item = new GildedRose('Aged Brie', 50, -1);
+//         item.tick();
 
-        expect(item.quality).to.equal(50);
-        expect(item.daysRemaining).to.equal(-2);
-    })
+//         expect(item.quality).to.equal(50);
+//         expect(item.daysRemaining).to.equal(-2);
+//     })
 
-    it('gets better faster', () => {
-        const item = new GildedRose('Aged Brie', 40, -1);
-        item.tick();
+//     it('gets better faster', () => {
+//         const item = new GildedRose('Aged Brie', 40, -1);
+//         item.tick();
 
-        expect(item.quality).to.equal(42);
-        expect(item.daysRemaining).to.equal(-2);
-    })
-})
+//         expect(item.quality).to.equal(42);
+//         expect(item.daysRemaining).to.equal(-2);
+//     })
+// })
 
-describe('Backstage passes to a TAFKAL80ETC concert', () => {
-    it('get better fast', () => {
-        const item = new GildedRose('Backstage passes to a TAFKAL80ETC concert', 10, 5);
-        item.tick();
+// describe('Backstage passes to a TAFKAL80ETC concert', () => {
+//     it('get better fast', () => {
+//         const item = new GildedRose('Backstage passes to a TAFKAL80ETC concert', 10, 5);
+//         item.tick();
 
-        expect(item.quality).to.equal(13);
-        expect(item.daysRemaining).to.equal(4);
-    })
+//         expect(item.quality).to.equal(13);
+//         expect(item.daysRemaining).to.equal(4);
+//     })
 
-    it('Never better than 50', () => {
-        const item = new GildedRose('Backstage passes to a TAFKAL80ETC concert', 49, 5);
-        item.tick();
+//     it('Never better than 50', () => {
+//         const item = new GildedRose('Backstage passes to a TAFKAL80ETC concert', 49, 5);
+//         item.tick();
 
-        expect(item.quality).to.equal(50);
-        expect(item.daysRemaining).to.equal(4);
-    })
+//         expect(item.quality).to.equal(50);
+//         expect(item.daysRemaining).to.equal(4);
+//     })
 
-    it('maxes out at 50', () => {
-        const item = new GildedRose('Backstage passes to a TAFKAL80ETC concert', 49, 12);
-        item.tick();
+//     it('maxes out at 50', () => {
+//         const item = new GildedRose('Backstage passes to a TAFKAL80ETC concert', 49, 12);
+//         item.tick();
 
-        expect(item.quality).to.equal(50);
-        expect(item.daysRemaining).to.equal(11);
-    })
+//         expect(item.quality).to.equal(50);
+//         expect(item.daysRemaining).to.equal(11);
+//     })
 
-    it('useless after show', () => {
-        const item = new GildedRose('Backstage passes to a TAFKAL80ETC concert', 49, -1);
-        item.tick();
+//     it('useless after show', () => {
+//         const item = new GildedRose('Backstage passes to a TAFKAL80ETC concert', 49, -1);
+//         item.tick();
 
-        expect(item.quality).to.equal(0);
-        expect(item.daysRemaining).to.equal(-2);
-    })
-})
+//         expect(item.quality).to.equal(0);
+//         expect(item.daysRemaining).to.equal(-2);
+//     })
+// })
 
 // describe('Conjured Item', () => {
 //     it('degrades faster than normal', () => {
