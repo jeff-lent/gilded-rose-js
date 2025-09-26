@@ -2,31 +2,37 @@
 
 ## Background
 
-The Gilded Rose is a famous kata (or exercise) in OO, testing, and refactoring legacy code. By completing this kata, you will master the proper use of inheritance, by using it to eliminate conditionals in a wide-but-not-deep tree.
+The Gilded Rose is a famous kata (or exercise) in OO, testing, and refactoring legacy code. This branch contains a fully refactored solution that replaces the original 40-line conditional with composable item types and an expressive inventory API.
 
-## Instructions
+## Project Structure
 
-1. Watch [this video](https://www.youtube.com/watch?v=8bZh5LMaSmE) by Sandi Metz.
-1. Fork & clone this repository
-1. npm install
-1. npm test (to insure tests run without problems before refactoring)
-1. Refactor, following the example set by Ms. Metz
-1. Verify the tests still pass
-1. If time allows uncomment the "Conjured Item" tests and extend the solution to turn them green.
+- **`src/items`** – Specialized item classes (`NormalItem`, `AgedBrie`, `BackstagePass`, `ConjuredItem`, `LegendaryItem`) encapsulate each rule in the kata.
+- **`src/ItemFactory.js`** – Chooses the correct item implementation based on an item's name (with support for any "Conjured" variant).
+- **`src/GildedRose.js`** – Inventory façade responsible for updating every item in the store while maintaining compatibility with the kata's legacy constructor.
+- **`test/GildedRose.test.js`** – Comprehensive Mocha/Chai test suite covering every item category, edge case, and the inventory façade.
 
-***Node: do not alter the 40 line if statement. Rewrite it then delete it like in the video.***
+## Usage
 
-At 10:28 in the video, Ms. Metz talks about how to create "a seam". Follow this procedure to avoid having to understand the deeply nested conditionals.
+```js
+const { GildedRose, createItem } = require('./GildedRose');
 
-### Run with Coverage
+const inventory = new GildedRose([
+  createItem('normal', 10, 5),
+  createItem('Aged Brie', 0, 2),
+]);
 
-Use IntelliJ's run with coverage feature:
+inventory.tick(); // updates every item in place
+```
 
-![coverage](./img/coverage.png)
+The `GildedRose` constructor also supports the kata's legacy positional signature for working with a single item: `new GildedRose('normal', 5, 0)`.
 
-Observe the red lines of code and turn them green!
+## Development Workflow
 
+1. Install dependencies with `npm install`.
+2. Run the full test suite with `npm test`.
+3. Add new rules by creating an item class in `src/items` and registering it with the factory.
 
-### Additional information
+## Additional Resources
 
-[Original Descripton of Gilded Rose](https://codingdojo.org/kata/gilded-rose/)
+- [Original Description of Gilded Rose](https://codingdojo.org/kata/gilded-rose/)
+- [Sandi Metz – "All the Little Things"](https://www.youtube.com/watch?v=8bZh5LMaSmE)
